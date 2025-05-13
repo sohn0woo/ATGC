@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import requests
 import feedparser
 import os
@@ -30,6 +30,10 @@ def get_news():
         "published": entry.published
     } for entry in feed.entries[:5]]
     return jsonify({"articles": articles})
+
+@app.route('/openapi.json')
+def serve_openapi():
+    return send_file('openapi.json', mimetype='application/json')
 
 if __name__ == '__main__':
     app.run(debug=True)
