@@ -1,0 +1,57 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Stock & News API",
+    "version": "1.0.0",
+    "description": "Provides stock quotes and news using Twelve Data and Google News"
+  },
+  "servers": [
+    {
+      "url": "https://atgc.vercel.app"
+    }
+  ],
+  "paths": {
+    "/quote": {
+      "get": {
+        "summary": "Get real-time stock quote",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Stock ticker symbol (e.g., AAPL, TSLA)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stock quote result"
+          }
+        }
+      }
+    },
+    "/news": {
+      "get": {
+        "summary": "Get related news headlines",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Keyword to search news for (e.g., 삼성전자)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of news headlines"
+          }
+        }
+      }
+    }
+  }
+}
